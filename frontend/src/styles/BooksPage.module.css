@@ -1,0 +1,29 @@
+.booksContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.oldTestament,
+.newTestament {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.oldTestament h3,
+.newTestament h3 {
+  margin-bottom: 10px;
+}
+
+.book {
+  width: 280px;
+  padding-block: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px rgb(225, 225, 225);
+  font-weight: 500;
+}
+
+.book:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
