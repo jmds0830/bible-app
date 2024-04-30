@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      message: 'Error fetching translation data.',
+      message: 'Error fetching translations data.',
       error: error.message,
     });
   }
@@ -49,7 +49,7 @@ app.get('/:abbreviation', async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      message: 'Error fetching book data.',
+      message: 'Error fetching books data.',
     });
   }
 });
@@ -73,7 +73,33 @@ app.get('/:abbreviation/:bookName', async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      message: 'Error fetching chapter data.',
+      message: 'Error fetching chapters data.',
+      error: error.message,
+    });
+  }
+});
+
+app.get('/:abbreviation/:bookName/:chapterId', async (req, res) => {
+  const { chapterId, bookName, abbreviation } = req.params;
+  try {
+    const bookId = bookToIdMap[bookName];
+    if (!bookId) {
+      throw new Error('Book not found');
+    }
+
+    const response = await fetch(
+      `https://bible-go-api.rkeplin.com/v1/books/${bookId}/chapters/${chapterId}?translation=${abbreviation}`
+    );
+
+    const verses = await response.json();
+
+    res.status(200).json({
+      message: 'Successfully fetched data.',
+      verses,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Error fetching verses data.',
       error: error.message,
     });
   }
