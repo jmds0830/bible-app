@@ -1,3 +1,9 @@
+.mainContainer {
+  max-width: 700px;
+  margin-inline: 10px;
+  margin-top: 100px;
+}
+
 .booksContainer {
   display: flex;
   gap: 30px;
@@ -26,4 +32,8 @@
 .book:hover {
   cursor: pointer;
   background-color: #f9f9f9;
+}
+
+.loading {
+  margin: auto;
 }

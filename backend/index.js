@@ -16,40 +16,28 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', async (req, res) => {
+app.get('/:abbreviation/:bookName/:chapterId', async (req, res) => {
+  const { chapterId, bookName, abbreviation } = req.params;
   try {
+    const bookId = bookToIdMap[bookName];
+    if (!bookId) {
+      throw new Error('Book not found');
+    }
+
     const response = await fetch(
-      'https://bible-go-api.rkeplin.com/v1/translations'
+      `https://bible-go-api.rkeplin.com/v1/books/${bookId}/chapters/${chapterId}?translation=${abbreviation}`
     );
-    const translations = await response.json();
+
+    const verses = await response.json();
 
     res.status(200).json({
       message: 'Successfully fetched data.',
-      translations,
+      verses,
     });
   } catch (error) {
     res.status(400).json({
-      message: 'Error fetching translations data.',
+      message: 'Error fetching verses data.',
       error: error.message,
-    });
-  }
-});
-
-app.get('/:abbreviation', async (req, res) => {
-  const { abbreviation } = req.params;
-  try {
-    const response = await fetch(
-      `https://bible-go-api.rkeplin.com/v1/books?translation=${abbreviation}`
-    );
-    const books = await response.json();
-
-    res.status(200).json({
-      message: 'Successfully fetched data.',
-      books,
-    });
-  } catch (error) {
-    res.status(400).json({
-      message: 'Error fetching books data.',
     });
   }
 });
@@ -79,27 +67,39 @@ app.get('/:abbreviation/:bookName', async (req, res) => {
   }
 });
 
-app.get('/:abbreviation/:bookName/:chapterId', async (req, res) => {
-  const { chapterId, bookName, abbreviation } = req.params;
+app.get('/:abbreviation', async (req, res) => {
+  const { abbreviation } = req.params;
   try {
-    const bookId = bookToIdMap[bookName];
-    if (!bookId) {
-      throw new Error('Book not found');
-    }
-
     const response = await fetch(
-      `https://bible-go-api.rkeplin.com/v1/books/${bookId}/chapters/${chapterId}?translation=${abbreviation}`
+      `https://bible-go-api.rkeplin.com/v1/books?translation=${abbreviation}`
     );
-
-    const verses = await response.json();
+    const books = await response.json();
 
     res.status(200).json({
       message: 'Successfully fetched data.',
-      verses,
+      books,
     });
   } catch (error) {
     res.status(400).json({
-      message: 'Error fetching verses data.',
+      message: 'Error fetching books data.',
+    });
+  }
+});
+
+app.get('/', async (req, res) => {
+  try {
+    const response = await fetch(
+      'https://bible-go-api.rkeplin.com/v1/translations'
+    );
+    const translations = await response.json();
+
+    res.status(200).json({
+      message: 'Successfully fetched data.',
+      translations,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Error fetching translations data.',
       error: error.message,
     });
   }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import styles from '/src/styles/VersesPage.module.css';
+import SubBar from '../components/SubBar';
 
 function VersesPage() {
   const [data, setData] = useState();
@@ -23,22 +25,23 @@ function VersesPage() {
 
   return (
     <>
+      <SubBar />
       {data?.length > 0 ? (
-        <div>
+        <div className={styles.mainContainer}>
           <h3>
             {bookName} {chapterId}
           </h3>
-          <div>
+          <div className={styles.verseContainer}>
             {data?.map((verse) => (
-              <div key={verse.id}>
+              <p key={verse.id}>
                 <span>{verse.verseId} </span>
                 <span>{verse.verse}</span>
-              </div>
+              </p>
             ))}
           </div>
         </div>
       ) : (
-        <p>Loading Verses...</p>
+        <p className={styles.loading}>Loading Verses...</p>
       )}
     </>
   );
