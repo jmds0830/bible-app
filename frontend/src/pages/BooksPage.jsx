@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '/src/styles/BooksPage.module.css';
-import SubBar from '../components/SubBar';
+import NavBar from '../components/NavBar';
 
 function BooksPage() {
   const [data, setData] = useState();
@@ -32,9 +32,9 @@ function BooksPage() {
 
   return (
     <>
-      <SubBar />
-      <div className={styles.mainContainer}>
-        {oldTestament?.length > 0 && newTestament?.length > 0 ? (
+      <NavBar />
+      {oldTestament?.length > 0 && newTestament?.length > 0 ? (
+        <div className={styles.mainContainer}>
           <div className={styles.booksContainer}>
             <div className={styles.oldTestament}>
               <h3>Old Testament</h3>
@@ -61,10 +61,10 @@ function BooksPage() {
               ))}
             </div>
           </div>
-        ) : (
-          <p className={styles.loading}>Loading Books...</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className={styles.loading}>Loading Books...</div>
+      )}
     </>
   );
 }

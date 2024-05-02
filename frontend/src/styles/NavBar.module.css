@@ -1,0 +1,27 @@
+.navBar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  height: 30px;
+  width: 100vw;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navigationContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  padding-inline: 15px;
+}
+
+.icon {
+  height: 10px;
+}
+
+.bold {
+  font-weight: 600;
+}

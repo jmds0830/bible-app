@@ -1,13 +1,13 @@
-import NavBar from './NavBar';
+import Banner from './Banner';
 import styles from '/src/styles/Layout.module.css';
 
 function Layout({ children }) {
   return (
     <>
       <header className={styles.header}>
-        <NavBar />
+        <Banner />
       </header>
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
       <footer></footer>
     </>
   );

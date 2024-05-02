@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '/src/styles/HomePage.module.css';
-import SubBar from '../components/SubBar';
+import Navbar from '../components/NavBar';
 
 function HomePage() {
   const [data, setData] = useState();
@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <>
-      <SubBar />
+      <Navbar />
       {data?.length > 0 ? (
         <div className={styles.mainContainer}>
           <h3>Available Translations</h3>
@@ -37,6 +37,7 @@ function HomePage() {
                 <span className={styles.title}>{translation.abbreviation}</span>
                 <span className={styles.subtitle}>{translation.version}</span>
                 <button
+                  className={styles.button}
                   onClick={() => handleNavigate(translation.abbreviation)}
                 >
                   Read
@@ -46,7 +47,7 @@ function HomePage() {
           </div>
         </div>
       ) : (
-        <p className={styles.loading}>Loading Translations...</p>
+        <div className={styles.loading}>Loading Translations...</div>
       )}
     </>
   );

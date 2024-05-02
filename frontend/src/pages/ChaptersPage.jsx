@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import TitleBar from '../components/TitleBar';
 import styles from '/src/styles/ChaptersPage.module.css';
-import SubBar from '../components/SubBar';
 
 function ChaptersPage() {
   const [data, setData] = useState([]);
@@ -30,10 +31,10 @@ function ChaptersPage() {
 
   return (
     <>
-      <SubBar />
+      <NavBar />
+      <TitleBar />
       {data.length > 0 ? (
         <div className={styles.mainContainer}>
-          <h3>{bookName}</h3>
           <div className={styles.chapterContainer}>
             {data?.map((chapter) => (
               <div
@@ -47,7 +48,7 @@ function ChaptersPage() {
           </div>
         </div>
       ) : (
-        <p className={styles.loading}>Loading Chapters...</p>
+        <div className={styles.loading}>Loading Chapters...</div>
       )}
     </>
   );

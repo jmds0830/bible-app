@@ -1,0 +1,21 @@
+.mainContainer {
+  position: fixed;
+  top: 110px;
+  left: 0;
+  width: 100vw;
+  z-index: 1;
+  margin: auto;
+  background-color: white;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  height: 85px;
+  max-width: 800px;
+  margin-inline: auto;
+  z-index: 1;
+  padding-inline: 15px;
+}
