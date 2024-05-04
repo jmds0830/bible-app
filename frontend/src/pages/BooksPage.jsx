@@ -42,7 +42,7 @@ function BooksPage() {
                 <div
                   key={book.id}
                   className={styles.book}
-                  onClick={() => handleNavigate(book.name)}
+                  onClick={() => handleNavigate(book.name.replace(/\s+/g, '-'))}
                 >
                   {book.name}
                 </div>
@@ -54,7 +54,7 @@ function BooksPage() {
                 <div
                   key={book.id}
                   className={styles.book}
-                  onClick={() => handleNavigate(book.name)}
+                  onClick={() => handleNavigate(book.name.replace(/\s+/g, '-'))}
                 >
                   {book.name}
                 </div>

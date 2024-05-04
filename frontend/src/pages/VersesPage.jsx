@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import TitleBar from '../components/TitleBar';
+import ChapterTitleBar from '../components/ChapterTitlebar';
 import styles from '/src/styles/VersesPage.module.css';
 
 function VersesPage() {
@@ -27,7 +27,7 @@ function VersesPage() {
   return (
     <>
       <NavBar />
-      <TitleBar />
+      <ChapterTitleBar />
       {data?.length > 0 ? (
         <div className={styles.mainContainer}>
           <div className={styles.verseContainer}>

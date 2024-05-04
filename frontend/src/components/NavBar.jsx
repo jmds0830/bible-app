@@ -10,9 +10,14 @@ function NavBar() {
   if (abbreviation && !bookName && !chapterId) {
     array.push('Home', abbreviation);
   } else if (abbreviation && bookName && !chapterId) {
-    array.push('Home', abbreviation, bookName);
+    array.push('Home', abbreviation, `${bookName.replace(/-/g, ' ')}`);
   } else if (abbreviation && bookName && chapterId) {
-    array.push('Home', abbreviation, bookName, `Chapter ${chapterId}`);
+    array.push(
+      'Home',
+      abbreviation,
+      `${bookName.replace(/-/g, ' ')}`,
+      `Chapter ${chapterId}`
+    );
   } else {
     array.push('Home');
   }

@@ -1,4 +1,4 @@
-export const bookToIdMap = {
+export const BookToIdMap = {
   Genesis: 1,
   Exodus: 2,
   Leviticus: 3,

@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { bookToIdMap } from '../frontend/src/components/BookToIdMap.js';
+import { BookToIdMap } from '../frontend/src/components/BookToIdMap.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +19,7 @@ app.use(cors());
 app.get('/:abbreviation/:bookName/:chapterId', async (req, res) => {
   const { chapterId, bookName, abbreviation } = req.params;
   try {
-    const bookId = bookToIdMap[bookName];
+    const bookId = BookToIdMap[bookName];
     if (!bookId) {
       throw new Error('Book not found');
     }
@@ -45,7 +45,7 @@ app.get('/:abbreviation/:bookName/:chapterId', async (req, res) => {
 app.get('/:abbreviation/:bookName', async (req, res) => {
   const { bookName, abbreviation } = req.params;
   try {
-    const bookId = bookToIdMap[bookName];
+    const bookId = BookToIdMap[bookName];
     if (!bookId) {
       throw new Error('Book not found');
     }
