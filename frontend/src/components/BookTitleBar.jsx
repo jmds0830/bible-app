@@ -23,7 +23,15 @@ function BookTitleBar() {
     fetchBooks();
   }, [abbreviation]);
 
-  const handleNext = async () => {
+  const handlePrevious = () => {
+    const currentIndex = Object.values(BookToIdMap).indexOf(
+      BookToIdMap[bookName]
+    );
+    const previousBookName = bookData[currentIndex - 1].name;
+    navigate(`/${abbreviation}/${previousBookName.replace(/\s+/g, '-')}`);
+  };
+
+  const handleNext = () => {
     const currentIndex = Object.values(BookToIdMap).indexOf(
       BookToIdMap[bookName]
     );
@@ -34,9 +42,13 @@ function BookTitleBar() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.titleBar}>
-        <button>
-          <FaArrowLeft />
-        </button>
+        {bookName !== 'Genesis' ? (
+          <button className={styles.nextButton} onClick={handlePrevious}>
+            <FaArrowLeft />
+          </button>
+        ) : (
+          <div className={styles.previousButton}></div>
+        )}
         <h3>{bookName.replace(/-/g, ' ')}</h3>
         {bookName !== 'Revelation' ? (
           <button className={styles.nextButton} onClick={handleNext}>

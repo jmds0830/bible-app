@@ -39,6 +39,35 @@ function ChapterTitleBar() {
     fetchBooks();
   }, [abbreviation, bookName]);
 
+  const handlePrevious = () => {
+    const currentIndex = Object.values(BookToIdMap).indexOf(
+      BookToIdMap[bookName]
+    );
+    const previousBookName = bookData && bookData[currentIndex - 1]?.name;
+
+    const previousChapterId = parseInt(chapterId) - 1;
+    if (chapterData && previousChapterId >= 1) {
+      navigate(
+        `/${abbreviation}/${bookName.replace(/\s+/g, '-')}/${previousChapterId}`
+      );
+    } else if (previousBookName) {
+      fetch(`http://localhost:3000/${abbreviation}/${previousBookName}`)
+        .then((response) => response.json())
+        .then((result) => {
+          const lastChapterId = result.chapters.length;
+          navigate(
+            `/${abbreviation}/${previousBookName.replace(
+              /\s+/g,
+              '-'
+            )}/${lastChapterId}`
+          );
+        })
+        .catch((error) =>
+          console.error('Error fetching previous book chapters:', error.message)
+        );
+    }
+  };
+
   const handleNext = () => {
     const currentIndex = Object.values(BookToIdMap).indexOf(
       BookToIdMap[bookName]
@@ -50,7 +79,7 @@ function ChapterTitleBar() {
       navigate(
         `/${abbreviation}/${bookName.replace(/\s+/g, '-')}/${nextChapterId}`
       );
-    } else {
+    } else if (nextBookName) {
       navigate(`/${abbreviation}/${nextBookName.replace(/\s+/g, '-')}/1`);
     }
   };
@@ -58,9 +87,13 @@ function ChapterTitleBar() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.titleBar}>
-        <button>
-          <FaArrowLeft />
-        </button>
+        {bookName !== 'Genesis' || chapterId > 1 ? (
+          <button className={styles.previousButton} onClick={handlePrevious}>
+            <FaArrowLeft />
+          </button>
+        ) : (
+          <div className={styles.previousButton}></div>
+        )}
         <h3>{bookTitle.replace(/-/g, ' ')}</h3>
         {bookName !== 'Revelation' || chapterId < 22 ? (
           <button className={styles.nextButton} onClick={handleNext}>

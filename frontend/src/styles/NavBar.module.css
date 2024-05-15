@@ -24,4 +24,10 @@
 
 .bold {
   font-weight: 600;
+  color: black;
+}
+
+.link {
+  font-weight: 400;
+  color: black;
 }

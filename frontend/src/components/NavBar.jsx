@@ -1,25 +1,34 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { PiGreaterThan } from 'react-icons/pi';
 import styles from '/src/styles/NavBar.module.css';
 
 function NavBar() {
   const { abbreviation, bookName, chapterId } = useParams();
-
   const array = [];
 
   if (abbreviation && !bookName && !chapterId) {
-    array.push('Home', abbreviation);
+    array.push({ label: 'Home', path: '/' });
+    array.push({ label: abbreviation, path: `/${abbreviation}` });
   } else if (abbreviation && bookName && !chapterId) {
-    array.push('Home', abbreviation, `${bookName.replace(/-/g, ' ')}`);
+    array.push({ label: 'Home', path: '/' });
+    array.push({ label: abbreviation, path: `/${abbreviation}` });
+    array.push({
+      label: `${bookName.replace(/-/g, ' ')}`,
+      path: `/${abbreviation}/${bookName}`,
+    });
   } else if (abbreviation && bookName && chapterId) {
-    array.push(
-      'Home',
-      abbreviation,
-      `${bookName.replace(/-/g, ' ')}`,
-      `Chapter ${chapterId}`
-    );
+    array.push({ label: 'Home', path: '/' });
+    array.push({ label: abbreviation, path: `/${abbreviation}` });
+    array.push({
+      label: `${bookName.replace(/-/g, ' ')}`,
+      path: `/${abbreviation}/${bookName}`,
+    });
+    array.push({
+      label: `${chapterId}`,
+      path: `/${abbreviation}/${bookName}/${chapterId}`,
+    });
   } else {
-    array.push('Home');
+    array.push({ label: 'Home', path: '/' });
   }
 
   const lastItem = array[array.length - 1];
@@ -31,9 +40,12 @@ function NavBar() {
           {array.map((item, index) => (
             <span key={index} className={styles.navigation}>
               {index > 0 ? <PiGreaterThan className={styles.icon} /> : ''}
-              <span className={item === lastItem ? styles.bold : ''}>
-                {item}
-              </span>
+              <Link
+                to={item.path}
+                className={item === lastItem ? styles.bold : styles.link}
+              >
+                {item.label}
+              </Link>
             </span>
           ))}
         </div>
