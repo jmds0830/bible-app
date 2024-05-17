@@ -1,6 +1,6 @@
 .mainContainer {
   max-width: 800px;
-  margin-top: 240px;
+  margin-top: 210px;
   padding-inline: 20px;
 }
 
@@ -10,9 +10,9 @@
 
 .chapterContainer {
   display: grid;
-  gap: 20px;
+  gap: 15px;
   justify-items: center;
-  grid-template-columns: repeat(6, minmax(80px, 1fr));
+  grid-template-columns: repeat(7, minmax(70px, 1fr));
   flex-grow: 1;
 }
 
@@ -20,8 +20,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 40px;
+  height: 35px;
+  width: 45px;
   border-radius: 5px;
   box-shadow: 0 0 1px 1px rgb(225, 225, 225);
   font-weight: 500;
@@ -36,4 +36,34 @@
   display: flex;
   align-items: center;
   min-height: 100vh;
+}
+
+@media (max-width: 1000px) {
+  .chapterContainer {
+    grid-template-columns: repeat(6, minmax(70px, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .chapterContainer {
+    grid-template-columns: repeat(6, minmax(70px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .chapterContainer {
+    grid-template-columns: repeat(5, minmax(60px, 1fr));
+  }
+}
+
+@media (max-width: 450px) {
+  .chapterContainer {
+    grid-template-columns: repeat(4, minmax(60px, 1fr));
+  }
+}
+
+@media (max-width: 350px) {
+  .chapterContainer {
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
+  }
 }

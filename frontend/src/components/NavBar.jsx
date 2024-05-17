@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { PiGreaterThan } from 'react-icons/pi';
+import { RiHomeLine } from 'react-icons/ri';
 import styles from '/src/styles/NavBar.module.css';
 
 function NavBar() {
@@ -37,17 +38,19 @@ function NavBar() {
     <>
       <div className={styles.navBar}>
         <div className={styles.navigationContainer}>
-          {array.map((item, index) => (
-            <span key={index} className={styles.navigation}>
-              {index > 0 ? <PiGreaterThan className={styles.icon} /> : ''}
-              <Link
-                to={item.path}
-                className={item === lastItem ? styles.bold : styles.link}
-              >
-                {item.label}
-              </Link>
-            </span>
-          ))}
+          <div>
+            {array.map((item, index) => (
+              <span key={index} className={styles.navigation}>
+                {index > 0 ? <PiGreaterThan className={styles.icon} /> : ''}
+                <Link
+                  to={item.path}
+                  className={item === lastItem ? styles.bold : styles.link}
+                >
+                  {item.label}
+                </Link>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </>

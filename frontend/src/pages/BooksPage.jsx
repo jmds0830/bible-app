@@ -39,25 +39,25 @@ function BooksPage() {
             <div className={styles.oldTestament}>
               <h3>Old Testament</h3>
               {oldTestament?.map((book) => (
-                <div
+                <button
                   key={book.id}
                   className={styles.book}
                   onClick={() => handleNavigate(book.name.replace(/\s+/g, '-'))}
                 >
                   {book.name}
-                </div>
+                </button>
               ))}
             </div>
             <div className={styles.newTestament}>
               <h3>New Testament</h3>
               {newTestament?.map((book) => (
-                <div
+                <button
                   key={book.id}
                   className={styles.book}
                   onClick={() => handleNavigate(book.name.replace(/\s+/g, '-'))}
                 >
                   {book.name}
-                </div>
+                </button>
               ))}
             </div>
           </div>

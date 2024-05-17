@@ -37,13 +37,13 @@ function ChaptersPage() {
         <div className={styles.mainContainer}>
           <div className={styles.chapterContainer}>
             {data?.map((chapter) => (
-              <div
+              <button
                 key={chapter.id}
                 className={styles.chapter}
                 onClick={() => handleNavigate(chapter.id)}
               >
                 {chapter.id}
-              </div>
+              </button>
             ))}
           </div>
         </div>

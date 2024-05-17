@@ -1,9 +1,28 @@
 .banner {
   display: flex;
   justify-content: space-between;
-  height: 80px;
+  align-items: center;
+  height: 70px;
   max-width: 800px;
   margin-inline: auto;
   padding-inline: 15px;
   z-index: 1000;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.fontButton,
+.iconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
 }

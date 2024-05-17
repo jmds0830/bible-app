@@ -47,7 +47,7 @@ function BookTitleBar() {
             <FaArrowLeft />
           </button>
         ) : (
-          <div className={styles.previousButton}></div>
+          <div className={styles.nullButton}></div>
         )}
         <h3>{bookName.replace(/-/g, ' ')}</h3>
         {bookName !== 'Revelation' ? (
@@ -55,7 +55,7 @@ function BookTitleBar() {
             <FaArrowRight />
           </button>
         ) : (
-          <div className={styles.nextButton}></div>
+          <div className={styles.nullButton}></div>
         )}
       </div>
     </div>

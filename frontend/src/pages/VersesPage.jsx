@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Layout from '../components/Layout';
 import NavBar from '../components/NavBar';
 import ChapterTitleBar from '../components/ChapterTitlebar';
 import styles from '/src/styles/VersesPage.module.css';
@@ -25,7 +26,7 @@ function VersesPage() {
   }, [abbreviation, bookName, chapterId]);
 
   return (
-    <>
+    <Layout showButton={Boolean(abbreviation && bookName && chapterId)}>
       <NavBar />
       <ChapterTitleBar />
       {data?.length > 0 ? (
@@ -42,7 +43,7 @@ function VersesPage() {
       ) : (
         <div className={styles.loading}>Loading Verses...</div>
       )}
-    </>
+    </Layout>
   );
 }
 

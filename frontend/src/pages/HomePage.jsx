@@ -30,12 +30,15 @@ function HomePage() {
       <Navbar />
       {data?.length > 0 ? (
         <div className={styles.mainContainer}>
-          <h3>Available Translations</h3>
           <div className={styles.translationsContainer}>
             {data?.map((translation) => (
               <div key={translation.id} className={styles.translation}>
                 <span className={styles.title}>{translation.abbreviation}</span>
-                <span className={styles.subtitle}>{translation.version}</span>
+                <span className={styles.subtitle}>
+                  {translation.version === 'American Standard-ASV1901'
+                    ? 'American Standard'
+                    : translation.version}
+                </span>
                 <button
                   className={styles.button}
                   onClick={() => handleNavigate(translation.abbreviation)}

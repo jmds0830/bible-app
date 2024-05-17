@@ -92,7 +92,7 @@ function ChapterTitleBar() {
             <FaArrowLeft />
           </button>
         ) : (
-          <div className={styles.previousButton}></div>
+          <div className={styles.nullButton}></div>
         )}
         <h3>{bookTitle.replace(/-/g, ' ')}</h3>
         {bookName !== 'Revelation' || chapterId < 22 ? (
@@ -100,7 +100,7 @@ function ChapterTitleBar() {
             <FaArrowRight />
           </button>
         ) : (
-          <div className={styles.nextButton}></div>
+          <div className={styles.nullButton}></div>
         )}
       </div>
     </div>

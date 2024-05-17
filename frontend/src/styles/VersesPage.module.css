@@ -1,6 +1,6 @@
 .mainContainer {
   max-width: 800px;
-  margin-top: 220px;
+  margin-top: 210px;
   padding-inline: 20px;
 }
 
@@ -15,12 +15,13 @@
 
 .verse {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   font-size: 1.05em;
 }
 
 .verseNumber {
   font-size: 0.7em;
+  color: gray;
 }
 
 .loading {
